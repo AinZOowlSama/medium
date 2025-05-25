@@ -19,7 +19,7 @@ userRouter.post('/signup', async(c) => {
       datasourceUrl: c.env.DATABASE_URL,
     }).$extends(withAccelerate())
     
-    const { name, email, password } = await c.req.json()
+    const { name, username, password } = await c.req.json()
     const {success} = signupInput.safeParse(await c.req.json())
       if (!success) {
         c.status(400);
@@ -29,7 +29,7 @@ userRouter.post('/signup', async(c) => {
     const user = await prisma.user.create({
       data: {
         name,
-        email,
+        username,
         password
       }
     })
@@ -50,7 +50,7 @@ userRouter.post('/signin',async (c) => {
     const prisma = new PrismaClient({
       datasourceUrl: c.env.DATABASE_URL,
     }).$extends(withAccelerate())
-    const { email, password } = await c.req.json()
+    const { username, password } = await c.req.json()
     const {success} = signupInput.safeParse(await c.req.json())
        if (!success) {
         c.status(400);
@@ -59,7 +59,7 @@ userRouter.post('/signin',async (c) => {
  try{
     const user = await prisma.user.findUnique({
       where: {
-        email
+        username
         
       }
     })
