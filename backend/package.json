@@ -1,5 +1,6 @@
 {
   "name": "medium",
+  "type": "module",
   "scripts": {
     "dev": "wrangler dev",
     "deploy": "wrangler deploy --minify",
@@ -7,12 +8,14 @@
   },
   "dependencies": {
     "@giriii/medium-common": "^1.0.0",
-    "@prisma/client": "^6.8.2",
+    "@prisma/client": "^7.3.0",
     "@prisma/extension-accelerate": "^1.3.0",
-    "hono": "^4.7.10",
-    "prisma": "^6.8.2"
+    "hono": "^4.7.10"
   },
   "devDependencies": {
+    "@cloudflare/workers-types": "^4.20260207.0",
+    "dotenv": "^17.2.4",
+    "prisma": "^7.3.0",
     "wrangler": "^4.4.0"
   }
 }
