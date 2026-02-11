@@ -95,7 +95,7 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
 exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  username: 'username',
+  email: 'email',
   password: 'password'
 };
 
@@ -135,10 +135,10 @@ const config = {
   "clientVersion": "7.3.0",
   "engineVersion": "9d6ad21cbbceab97458517b147a6a09ff43aa735",
   "activeProvider": "postgresql",
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/generated/prisma\"\n  // engineType = \"client\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  // url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id       Int     @id @default(autoincrement())\n  name     String?\n  username String  @unique\n  password String\n  blogs    Blog[]\n}\n\nmodel Blog {\n  id        Int     @id @default(autoincrement())\n  authorId  Int\n  content   String\n  title     String\n  published Boolean @default(false)\n  author    User    @relation(fields: [authorId], references: [id])\n}\n"
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/generated/prisma\"\n  // engineType = \"client\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  // url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id       Int     @id @default(autoincrement())\n  name     String?\n  email    String  @unique\n  password String\n  blogs    Blog[]\n}\n\nmodel Blog {\n  id        Int     @id @default(autoincrement())\n  authorId  Int\n  content   String\n  title     String\n  published Boolean @default(false)\n  author    User    @relation(fields: [authorId], references: [id])\n}\n"
 }
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"username\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"password\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"blogs\",\"kind\":\"object\",\"type\":\"Blog\",\"relationName\":\"BlogToUser\"}],\"dbName\":null},\"Blog\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"authorId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"content\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"title\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"published\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"author\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"BlogToUser\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"password\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"blogs\",\"kind\":\"object\",\"type\":\"Blog\",\"relationName\":\"BlogToUser\"}],\"dbName\":null},\"Blog\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"authorId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"content\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"title\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"published\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"author\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"BlogToUser\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
 defineDmmfProperty(exports.Prisma, config.runtimeDataModel)
 config.compilerWasm = {
   getRuntime: async () => require('./query_compiler_fast_bg.js'),

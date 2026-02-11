@@ -1,5 +1,5 @@
-import type { Blog } from "../hooks"
 import { Appbar } from "./Appbar"
+import type { Blog } from "../hooks"
 import { Avatar } from "./BlogCard"
 
 export const FullBlog = ({ blog }: {blog: Blog}) => {
@@ -12,7 +12,7 @@ export const FullBlog = ({ blog }: {blog: Blog}) => {
                         {blog.title}
                     </div>
                     <div className="text-slate-500 pt-2">
-                        Post on 2nd December 2023
+                        Post on 2nd February 2026
                     </div>
                     <div className="pt-4">
                         {blog.content}
@@ -28,6 +28,7 @@ export const FullBlog = ({ blog }: {blog: Blog}) => {
                         </div>
                         <div>
                             <div className="text-xl font-bold">
+                                {/* Accessing the name property correctly based on your network tab */}
                                 {blog.author.name || "Anonymous"}
                             </div>
                             <div className="pt-2 text-slate-500">
@@ -36,7 +37,6 @@ export const FullBlog = ({ blog }: {blog: Blog}) => {
                         </div>
                     </div>  
                 </div>
-                
             </div>
         </div>
     </div>
